@@ -7,11 +7,11 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>SmartBin</Text>
-    // Was macht die App?
+    {/*} Was macht die App? */}
       <Text style={styles.subtitle}>
         Scanne deinen Müll und entsorge ihn richtig ♻️
       </Text>
-    // Hauptaktion der Scan-Flow startet
+    {/* Hauptaktion der Scan-Flow startet */}
       <Pressable 
       style={styles.button}
       onPress={() => router.push ('/scan')}
