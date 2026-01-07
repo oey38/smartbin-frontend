@@ -2,6 +2,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
+
 export default function QuizScreen() {
   const router = useRouter();
   const [picked, setPicked] = useState<string | null>(null);
