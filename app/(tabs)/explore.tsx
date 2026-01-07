@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
 
+// Ist Platzhalter für zukunftige Feature (Gamification)
 export default function Explore() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

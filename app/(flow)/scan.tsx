@@ -3,13 +3,17 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
+// Hauptfunktion 
 export default function ScanScreen() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  // Backend läuft lokal auf deinem PC
+  // zeigt gerade ob analysiert wird
+  const [loading, setLoading] = useState(false);
+  // speicher Fehlermeldung
+  const [error, setError] = useState<string | null>(null);
+  // Backend 
 const BACKEND_URL = "https://smartbin-backend-0d16.onrender.com";
+
 
 async function pickAndSendImage() {
   setLoading(true);
@@ -20,7 +24,7 @@ async function pickAndSendImage() {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 0.5,
     });
-
+  // Nutzer hat abgebrochen, dann machen wir nichts 
     if (result.canceled) return;
 
     const asset = result.assets[0];
@@ -42,17 +46,17 @@ async function pickAndSendImage() {
         } as any
       );
     }
-
+  // Foto wird ans Backend geschickt 
     const response = await fetch(`${BACKEND_URL}/api/classify`, {
       method: "POST",
       body: formData,
       // WICHTIG: KEIN "Content-Type" manuell setzen!
     });
-
+  // Wenn Backend Fehler liefert, wird abgebrochen
     if (!response.ok) throw new Error(`Backend error ${response.status}`);
 
     const data = await response.json();
-
+ // Wird zur Ergebnis-Seite übbergeben
     router.push({
       pathname: "/(flow)/result",
       params: {
@@ -67,6 +71,7 @@ async function pickAndSendImage() {
       },
     });
   } catch (err: any) {
+    //Fehler wenn was schiefgeht
     setError(err?.message ?? "Upload fehlgeschlagen");
   } finally {
     setLoading(false);
@@ -90,7 +95,7 @@ async function pickAndSendImage() {
     </View>
   );
 }
-
+// Styles: einfache, klare UI
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 24, justifyContent: "center", backgroundColor: "#071A24" },
   title: { fontSize: 34, fontWeight: "800", color: "#4FD1C5", marginBottom: 8 },

@@ -1,28 +1,33 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-
+//Ergebnis nach dem Scan wird hier angezeigt 
 export default function ResultScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams();
 
-  const bin = params.bin as string;
-  const item = params.item as string;
-  const why = params.why as string;
-  const cuteFact = params.cute_fact as string;
-  const motivation = params.motivation as string;
+  // Hier kommen die Werte an, die wir in ScanScreen beim  router.push mitgegeben haben 
+  const params = useLocalSearchParams();
+  //Haupt-Ergebnis vom Backend
+  const bin = params.bin as string; //z.B. Tonne
+  const item = params.item as string; //z.B. Joghurtbecher
+  const why = params.why as string; // Erklärung
+  const cuteFact = params.cute_fact as string; // kleine Info
+  const motivation = params.motivation as string; // motivierender Satz
 
   const steps = params.steps ? JSON.parse(params.steps as string) : [];
   const alternatives = params.alternatives ? JSON.parse(params.alternatives as string) : [];
+  // wie sicher die Erkennung war 
   const confidence = params.confidence ? Number(params.confidence) : null;
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Ergebnis</Text>
 
+// Karte mit allen Infos, für die Übersichtlichkeit  
       <View style={styles.card}>
+        // Wichtige Info zuerst
         <Text style={styles.binLabel}>Richtige Entsorgung</Text>
         <Text style={styles.binValue}>{bin}</Text>
-
+        // Details: was wurde erkannt und warum?
         <Text style={styles.text}>Objekt: {item}</Text>
         <Text style={styles.text}>Warum: {why}</Text>
 
@@ -34,12 +39,12 @@ export default function ResultScreen() {
             ))}
           </>
         )}
-
+      // Lerninfo und Motivation 
         <Text style={[styles.text, { marginTop: 10 }]}>💡 {cuteFact}</Text>
         <Text style={[styles.text, { marginTop: 10, fontWeight: "700" }]}>
           {motivation}
         </Text>
-
+      //Wenn die Erkennung unsicher größer als 0.5 bedeutet unischer
         {confidence !== null && confidence <= 0.5 && alternatives.length > 0 && (
           <>
             <Text style={styles.binLabel}>Mögliche Alternativen:</Text>
@@ -51,14 +56,14 @@ export default function ResultScreen() {
           </>
         )}
       </View>
-
+    // Mini-Quiz starten 
       <Pressable style={styles.primaryBtn} onPress={() => router.push("/quiz")}>
         <Text style={styles.primaryText}>Mini-Quiz starten</Text>
       </Pressable>
     </View>
   );
 }
-
+//Styles: klare Kontraste
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 24, backgroundColor: "#071A24" },
   title: { fontSize: 34, fontWeight: "800", color: "#4FD1C5", marginBottom: 16 },

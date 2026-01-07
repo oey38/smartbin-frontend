@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
+//Abschlussseite unseres Scan-features
 export default function DoneScreen() {
   const router = useRouter();
 
@@ -17,7 +18,7 @@ export default function DoneScreen() {
     </View>
   );
 }
-
+//Styles: schlicht, gut lesbar, klarer Button
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 24, justifyContent: "center", backgroundColor: "#071A24" },
   title: { fontSize: 34, fontWeight: "800", color: "#4FD1C5", marginBottom: 10 },

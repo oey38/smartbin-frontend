@@ -1,17 +1,17 @@
 import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-
-const router = useRouter(); 
-
+//Homescreen 
 export default function HomeScreen() {
+  //Router wird hier benutzt, um zur Scan-Seite zu wechseln 
+  const router = useRouter(); 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>SmartBin</Text>
-
+    // Was macht die App?
       <Text style={styles.subtitle}>
         Scanne deinen Müll und entsorge ihn richtig ♻️
       </Text>
-
+    // Hauptaktion der Scan-Flow startet
       <Pressable 
       style={styles.button}
       onPress={() => router.push ('/scan')}
@@ -21,7 +21,7 @@ export default function HomeScreen() {
     </View>
   );
 }
-
+//Styles: sehr einfach, Fokus auf einen Button
 const styles = StyleSheet.create({
   container: {
     flex: 1,
