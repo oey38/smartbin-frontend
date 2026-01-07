@@ -24,10 +24,10 @@ export default function ResultScreen() {
 
 {/* Karte mit allen Infos, für die Übersichtlichkeit */}
       <View style={styles.card}>
-        // Wichtige Info zuerst
+    {/* Wichtige Info zuerst */}
         <Text style={styles.binLabel}>Richtige Entsorgung</Text>
         <Text style={styles.binValue}>{bin}</Text>
-        // Details: was wurde erkannt und warum?
+      {/* Details: was wurde erkannt und warum? */}
         <Text style={styles.text}>Objekt: {item}</Text>
         <Text style={styles.text}>Warum: {why}</Text>
 
