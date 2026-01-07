@@ -22,7 +22,7 @@ export default function ResultScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Ergebnis</Text>
 
-// Karte mit allen Infos, für die Übersichtlichkeit  
+{/* Karte mit allen Infos, für die Übersichtlichkeit */}
       <View style={styles.card}>
         // Wichtige Info zuerst
         <Text style={styles.binLabel}>Richtige Entsorgung</Text>
@@ -39,12 +39,12 @@ export default function ResultScreen() {
             ))}
           </>
         )}
-      // Lerninfo und Motivation 
+      {/* Lerninfo und Motivation */}
         <Text style={[styles.text, { marginTop: 10 }]}>💡 {cuteFact}</Text>
         <Text style={[styles.text, { marginTop: 10, fontWeight: "700" }]}>
           {motivation}
         </Text>
-      //Wenn die Erkennung unsicher größer als 0.5 bedeutet unischer
+      {/* Wenn die Erkennung unsicher größer als 0.5 bedeutet unischer */}
         {confidence !== null && confidence <= 0.5 && alternatives.length > 0 && (
           <>
             <Text style={styles.binLabel}>Mögliche Alternativen:</Text>
@@ -56,7 +56,7 @@ export default function ResultScreen() {
           </>
         )}
       </View>
-    // Mini-Quiz starten 
+    {/* Mini-Quiz starten */}
       <Pressable style={styles.primaryBtn} onPress={() => router.push("/quiz")}>
         <Text style={styles.primaryText}>Mini-Quiz starten</Text>
       </Pressable>

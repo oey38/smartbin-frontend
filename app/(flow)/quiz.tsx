@@ -26,7 +26,7 @@ export default function QuizScreen() {
       <Text style={styles.question}>
         Wohin gehört eine leere Handcreme Verpackung?
       </Text>
-    //Antwortmöglichkeiten als Buttons
+    {/* Antwortmöglichkeiten als Buttons */}
       {["Restmüll", "Papier", "Gelbe Tonne", "Biomüll"].map((opt) => (
         <Pressable
           key={opt}
@@ -40,21 +40,21 @@ export default function QuizScreen() {
           <Text style={styles.optionText}>{opt}</Text>
         </Pressable>
       ))}
-    // Button zum abschicken
+    {/* Button zum abschicken */}
       <Pressable style={styles.primaryBtn} onPress={submit}>
         <Text style={styles.primaryText}>Antwort prüfen</Text>
       </Pressable>
-    // Antwort erscheint erst nach dem "Antwort prüfen" gedrückt wurde
+    {/* Antwort erscheint nach dem Anschicken */}
       {submitted && (
         <View style={styles.feedback}>
           <Text style={styles.feedbackTitle}>
             {isCorrect ? "✅ Richtig!" : "❌ Leider falsch."}
           </Text>
-          // Erklärung
+        {/* Erklärung */}
           <Text style={styles.feedbackText}>
             Erklärung: Verpackungen aus Kunststoff gehören in die Gelbe Tonne.
           </Text>
-        // Weiter zum Abschluss 
+        {/* Weiter zum Abschluss */}‚
           <Pressable
             style={styles.secondaryBtn}
             onPress={() => router.push("/done")}
